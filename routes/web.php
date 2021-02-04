@@ -42,7 +42,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::prefix('users')->name('admin_user.')->group(function () {
         Route::get("login",[UserController::class,'ad_login'])->name('admin_login');
     });
-    Route::get('get_user_list',[UserController::class,'get_user_list'])->name('get_user_list');
+    Route::get('get_user_list',[UserController::class,'get_user_list'])->name('get_user_list'); // get list of users for select 2 data.
 
     /**
      * Dashboard
