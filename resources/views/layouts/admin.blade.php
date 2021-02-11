@@ -27,8 +27,8 @@ Like: www.facebook.com/binodgiri41
     <link rel="stylesheet" type="text/css" href="{{ asset ('admin/app-assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset ('admin/app-assets/css/bootstrap-extended.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset ('admin/app-assets/css/components.min.css') }}">
-    <!-- <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/dark-layout.min.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/semi-dark-layout.min.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="{{ asset ('admin/app-assets/css/themes/dark-layout.min.css') }}"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="{{ asset ('admin/app-assets/css/themes/semi-dark-layout.min.css') }}"> -->
     <!-- END: Theme CSS-->
 
     @yield('page_css')
@@ -59,7 +59,11 @@ Like: www.facebook.com/binodgiri41
 
 
     <!-- BEGIN: Vendor JS-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>    <!-- <script src="{{ asset ('admin/app-assets/vendors/js/vendors.min.js') }}"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <!-- <script src="{{ asset ('admin/app-assets/vendors/js/vendors_mod.min.js') }}"></script> -->
     <!-- <script src="{{ asset ('admin/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.tools.min.js') }}"></script>
     <script src="{{ asset ('admin/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.defaults.min.js') }}"></script>
     <script src="{{ asset ('admin/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.min.js') }}"></script> -->
@@ -69,7 +73,9 @@ Like: www.facebook.com/binodgiri41
     <!-- END: Page Vendor JS-->
     <script src="{{ asset ('admin/app-assets/js/scripts/unision.min.js') }}"></script>
     <!-- BEGIN: Theme JS-->
-    <script src="{{ asset ('admin/app-assets/js/scripts/configs/vertical-menu-dark.min.js') }}"></script>
+
+       <!-- <script src="{{ asset ('admin/app-assets/vendors/js/vendors.min.js') }}"></script> -->
+ <script src="{{ asset ('admin/app-assets/js/scripts/configs/vertical-menu-dark.min.js') }}"></script>
     <script src="{{ asset ('admin/app-assets/js/core/app-menu.min.js') }}"></script>
     <script src="{{ asset ('admin/app-assets/js/core/app.min.js') }}"></script>
     <!-- <script src="{{ asset ('admin/app-assets/js/scripts/components.min.js') }}"></script> -->

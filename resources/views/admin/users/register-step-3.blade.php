@@ -42,7 +42,7 @@
             <div class="tab-content">
                 <div class="tab-pane active fade show" id="account" aria-labelledby="account-tab" role="tabpanel">
                     <!-- users edit account form start -->
-                    <form enctype="multipart/form-data" method="post" class="form-validate" action="{{ route('users.submit_user_verification',['user_id'=>encrypt($user_detail->id)]) }}">
+                    <form enctype="multipart/form-data" method="post" class="form-validate" action="{{ route('admin.users.submit_user_verification',['user_id'=>encrypt($user_detail->id)]) }}">
                         @csrf
                         <div class='row'>
                             <div class="col-md-12">
@@ -124,7 +124,7 @@
             // var formData = new FormData();
             // formData.append('')
             Webcam.upload( base64Image, 
-                '{{ url("users/user_webcam_upload") }}?user_id={{ encrypt($user_detail->id) }}',
+                '{{ url("admin/user_webcam_upload") }}?user_id={{ encrypt($user_detail->id) }}',
                  "{{ csrf_token() }}",
                  function(code, text) {
                     var response = JSON.parse(text);

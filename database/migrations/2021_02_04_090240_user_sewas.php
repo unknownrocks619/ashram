@@ -18,7 +18,7 @@ class UserSewas extends Migration
             $table->id()->comment('primary key for table.');
             $table->string('slug',100)->comment('slug id for sewas');
             $table->string('sewa_name',100)->comment('name of the sewa');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->integer('created_by_user')->comment("Foreign Key, Reference from table user_login, in order to track authorized personal");
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable()->comment('only for soft delets.');

@@ -92,7 +92,7 @@
               </a>
                 <ul class="menu-content">
                   <li>
-                      <a class="d-flex align-items-center" href="{{ route('users.new_user_registration') }}">
+                      <a class="d-flex align-items-center" href="{{ route('admin.users.new_user_registration') }}">
                         <i class="bx bx-right-arrow-alt"></i>
                         <span class="menu-item text-truncate" data-i18n="eCommerce">
                           New Users
@@ -142,7 +142,35 @@
                       </a>
                   </li>
                 </ul>
-            </li>            
+            </li>
+            
+            
+            <li class='has-sub'>
+              <a href="#">
+                  <span class="menu-title text-truncate">
+                    Services
+                  </span>
+              </a>
+                <ul class="menu-content">
+                  <li>
+                      <a class="d-flex align-items-center" href="{{ route('admin.services.sewas.index') }}">
+                        <i class="bx bx-right-arrow-alt"></i>
+                        <span class="menu-item text-truncate" data-i18n="eCommerce">
+                          Sewa
+                          
+                        </span>
+                      </a>
+                  </li>
+                  <li>
+                      <a class="d-flex align-items-center" href="#">
+                        <i class="bx bx-right-arrow-alt"></i>
+                        <span class="menu-item text-truncate" data-i18n="eCommerce">
+                          
+                        </span>
+                      </a>
+                  </li>
+                </ul>
+            </li>       
         </ul>
     </div>
 </div>

@@ -1,3 +1,4 @@
 {
-    "github.allowUnsafeSSL": true
+    "github.allowUnsafeSSL": true,
+    "github.autoPublish": true
 }

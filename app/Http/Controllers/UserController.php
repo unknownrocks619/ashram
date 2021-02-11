@@ -15,6 +15,8 @@ use App\Models\UserLogin;
 use App\Models\UserTypes;
 use App\Models\UserVerification;
 use App\Models\userMedia;
+use App\Models\userReference;
+use App\Models\UserSewaBridge;
 
 class UserController extends Controller
 {
@@ -35,7 +37,7 @@ class UserController extends Controller
             $getResponse->orWhere('phone_number','LIKE','%'.$request->get('q').'%');
             $getResponse->orWhere('pet_name','LIKE','%'.$request->get('q').'%');
         }
-        $response = ['results'];
+        $response = ['results'=>[]];
         foreach ($getResponse->get() as $list_response)
         {
             $innerArray = [];
@@ -246,7 +248,7 @@ class UserController extends Controller
             // act according to user entry type.
             if (Auth::guard('admin')->check() )
             {
-                return redirect()->route('users.new_user_registration',['step'=>"two",'user_id'=>encrypt($user_inserted_id)]);
+                return redirect()->route('admin.users.new_user_registration',['step'=>"two",'user_id'=>encrypt($user_inserted_id)]);
             }
         }
 
@@ -307,7 +309,7 @@ class UserController extends Controller
         // act according to user entry type.
         if (Auth::guard('admin')->check() )
         {
-            return redirect()->route('users.new_user_registration',['step'=>"three",'user_id'=>encrypt($userDetail->id)]);
+            return redirect()->route('admin.users.new_user_registration',['step'=>"three",'user_id'=>encrypt($userDetail->id)]);
         }
     }
 
@@ -351,11 +353,72 @@ class UserController extends Controller
                 return response()->json([
                     'error' => false,
                     'message' => "Snapshot was saved successfully. Please wait while you are redirect.",
-                    'redirection' => url("users/register"). "?step=four&user_id=".encrypt($user_detail->id)
+                    'redirection' => url("admin/register"). "?step=four&user_id=".encrypt($user_detail->id)
                 ]);
                 // return redirect()->route('users.new_user_registration',['step'=>"four",'user_id'=>encrypt($user_detail->id)]);
             }
         }
     }
 
-}
+    public function save_sewa_reference(Request $request)
+    {
+        
+        $user_detail = userDetail::findOrFail(decrypt($request->user_id));
+        // user refernces content.
+        $post_record = $request->post();
+        
+        if(Auth::guard('admin')->check()){
+            $post_record['created_by_user'] = Auth::guard('admin')->user()->id;
+        }
+        $post_record["user_detail_id"] = decrypt($request->user_id);
+
+        // check if reference is given in number or string.
+
+        // also let's check if this user already entereed.
+
+        $reference_detail = userReference::where('user_detail_id',$user_detail->id)->get()->first();
+
+        if ( ! $refered_user_detail ):
+            
+            if ((int) $request->refered_by_person) {
+                // let's search this user and get its detail.
+
+                $refered_user_detail = userDetail::findOrFail($request->refered_by_person);
+                $post_record["name"] = $refered_user_detail->full_name();
+                $post_record['phone_number'] = $refered_user_detail->phone_number;
+                $post_record['user_referer_id'] = $refered_user_detail->id;
+            } else {
+                $post_record['name'] = $request->refered_by_person;
+            }
+            
+            if ( (int) $request->refered_branch_id ){
+                $post_record["center_id"] = $request->refered_branch_id;
+            }
+
+            userReference::create($post_record);
+        endif;
+        
+
+        if ( ! empty ($request->interested_sewa) ) 
+        {
+            $insert_bulk = [];
+            foreach ( $request->interested_sewa as $list_sewa ) 
+            {
+                $innerArray = [];
+                if (Auth::guard('admin')->check() ) {
+                    $innerArray["created_by_user"] = Auth::guard('admin')->user()->id;
+                }
+                $innerArray['user_sewas_id'] = $list_sewa;
+                $innerArray['user_involvement'] = 'sewa_interested';
+                $innerArray['user_id'] = $user_detail->id;
+                $insert_bulk[] = $innerArray;
+                UserSewaBridge::create($innerArray);
+            }
+        }
+
+        // now redirect user to either to provide login detail or book a room.
+        $request->session()->flash('success','New User Record has been created.');
+        return redirect()->route('user-list');
+
+    }
+}   

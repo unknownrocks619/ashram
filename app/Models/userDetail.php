@@ -37,5 +37,16 @@ class userDetail extends Model
     ];
 
     
+    public function full_name() {
+
+        $full_name = $this->first_name;
+        if ($this->middle_name) {
+            $full_name .= " ";
+            $full_name .= $this->middle_name;
+        }
+        $full_name .= " ";
+        $full_name .= $this->last_name;
+        return $full_name;
+    }
 
 }

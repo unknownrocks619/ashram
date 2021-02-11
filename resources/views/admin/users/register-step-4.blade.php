@@ -39,55 +39,65 @@
                     </a>
                 </li>
             </ul>
-            <div class="tab-content">
-                <div class="tab-pane active fade show" id="account" aria-labelledby="account-tab" role="tabpanel">
-                    <!-- users edit account form start -->
-                    <div class='row'>
-                        <div class='col-md-6'>
-                            <div class="form-group">
-                                <label class='control-label'>Referred By Center</label>
-                                @php 
-                                    $allCenters = App\Models\Center::get();
-                                @endphp
-                                <select class='form-control' name='refered_branch_id'>
-                                    <option>Select Center (Optional)</option>
-                                    @foreach ($allCenters as $list_all_centers)
-                                        <option value="{{ $list_all_centers->id }}">{{ $list_all_centers->name }}</option>
-                                    @endforeach
-                                </select>
+            <form method="POST" action=" {{ route('admin.users.user-reference',['user_id'=>encrypt($user_detail->id)]) }} ">
+                @csrf
+                <div class="tab-content">
+                    <div class="tab-pane active fade show" id="account" aria-labelledby="account-tab" role="tabpanel">
+                        <!-- users edit account form start -->
+                        <div class='row'>
+                            <div class='col-md-6'>
+                                <div class="form-group">
+                                    <label class='control-label'>Referred By Center</label>
+                                    @php 
+                                        $allCenters = App\Models\Center::get();
+                                    @endphp
+                                    <select class='form-control' name='refered_branch_id'>
+                                        <option>Select Center (Optional)</option>
+                                        @foreach ($allCenters as $list_all_centers)
+                                            <option value="{{ $list_all_centers->id }}">{{ $list_all_centers->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class='col-md-6'>
+                                <div class="form-group">
+                                    <label class='control-label'>Referred By Person</label>
+                                    <select name="refered_by_person" id="refered_by_person" class='form-control'></select>
+                                </div>
                             </div>
                         </div>
-                        <div class='col-md-6'>
-                            <div class="form-group">
-                                <label class='control-label'>Referred By Person</label>
-                                <select name="refered_by_person" id="refered_by_person" class='form-control'></select>
+                        <hr />
+                        <div class='row'>
+                            <div class="col-md-6">
+                                <div class='form-group'>
+                                    <label class='control-label'>Interested Sewa</label>
+                                    <select multiple='multiple' name="interested_sewa[]" class='form-control' id='interested_sewa'>
+                                        @php 
+                                            $allSewas = App\Models\UserSewa::get();
+                                        @endphp
+                                        @foreach ($allSewas as $sewa)
+                                            <option value='{{ $sewa->id }}'>{{ $sewa->sewa_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class='form-group'>
+                                    <label class='control-label'>Skills</label>
+                                    <input type='text' name='skills' class='form-control' />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <hr />
-                    <div class='row'>
-                        <div class="col-md-6">
-                            <div class='form-group'>
-                                <label class='control-label'>Interested Sewa</label>
-                                <input type='text' name='interested_sewa' class='form-control' />
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class='form-group'>
-                                <label class='control-label'>Skills</label>
-                                <input type='text' name='skills' class='form-control' />
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class='row'>
-                        <div class="col-md-6">
-                            <input type='submit' class='btn btn-primary' value="Save & Continue" />
+                        <div class='row'>
+                            <div class="col-md-6">
+                                <input type='submit' class='btn btn-primary' value="Save & Continue" />
+                            </div>
                         </div>
+                        <!-- users edit account form ends -->
                     </div>
-                    <!-- users edit account form ends -->
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </section>
@@ -112,6 +122,11 @@
                     };
                 }
             }
+        });
+
+        $("#interested_sewa").select2({
+            tags: true,
+            containerCssClass : "form-control"
         });
     })
 </script>
