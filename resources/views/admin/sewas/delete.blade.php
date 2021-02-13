@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('admin.services.sewas.delete') }}">
+<form method="POST" action="{{ route('services.sewas.delete') }}">
     @csrf
     @if(isset($sewa))
         <input type="hidden" name='__app_id' value="{{ encrypt($sewa->id) }}" style='display:none' />

@@ -40,7 +40,7 @@
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
             <li class=" nav-item">
-                <a href="{{ route('admin.admin_dashboard') }}">
+                <a href="{{ route('admin_dashboard') }}">
                   <span class="menu-title text-truncate" data-i18n="Dashboard">Dashboard</span>
                 </a>
             </li>
@@ -92,7 +92,7 @@
               </a>
                 <ul class="menu-content">
                   <li>
-                      <a class="d-flex align-items-center" href="{{ route('admin.users.new_user_registration') }}">
+                      <a class="d-flex align-items-center" href="{{ route('users.new_user_registration') }}">
                         <i class="bx bx-right-arrow-alt"></i>
                         <span class="menu-item text-truncate" data-i18n="eCommerce">
                           New Users
@@ -101,10 +101,10 @@
                       </a>
                   </li>
                   <li>
-                      <a class="d-flex align-items-center" href="#">
+                      <a class="d-flex align-items-center" href="{{ route('users.user-list') }}">
                         <i class="bx bx-right-arrow-alt"></i>
                         <span class="menu-item text-truncate" data-i18n="eCommerce">
-                          Users
+                          All Users
                         </span>
                       </a>
                   </li>
@@ -118,7 +118,7 @@
               </a>
                 <ul class="menu-content">
                   <li>
-                      <a class="d-flex align-items-center" href="{{ route('admin.centers.center_list') }}">
+                      <a class="d-flex align-items-center" href="{{ route('centers.center_list') }}">
                         <i class="bx bx-right-arrow-alt"></i>
                         <span class="menu-item text-truncate" data-i18n="eCommerce">
                             All Centers
@@ -126,7 +126,7 @@
                       </a>
                   </li>
                   <li>
-                      <a class="d-flex align-items-center" href="{{ route('admin.centers.new_center_form') }}">
+                      <a class="d-flex align-items-center" href="{{ route('centers.new_center_form') }}">
                         <i class="bx bx-right-arrow-alt"></i>
                         <span class="menu-item text-truncate" data-i18n="eCommerce">
                           Add Center
@@ -148,12 +148,46 @@
             <li class='has-sub'>
               <a href="#">
                   <span class="menu-title text-truncate">
+                    Bookings
+                  </span>
+              </a>
+                <ul class="menu-content">
+                  <li>
+                      <a class="d-flex align-items-center" href="{{ route('bookings.booking-list') }}">
+                        <i class="bx bx-right-arrow-alt"></i>
+                        <span class="menu-item text-truncate" data-i18n="bookings">
+                            All Bookings
+                        </span>
+                      </a>
+                  </li>
+                  <li>
+                      <a class="d-flex align-items-center" href="{{ route('centers.new_center_form') }}">
+                        <i class="bx bx-right-arrow-alt"></i>
+                        <span class="menu-item text-truncate" data-i18n="eCommerce">
+                          Add Center
+                        </span>
+                      </a>
+                  </li>
+                  <li>
+                      <a class="d-flex align-items-center" href="#">
+                        <i class="bx bx-right-arrow-alt"></i>
+                        <span class="menu-item text-truncate" data-i18n="eCommerce">
+                          Report
+                        </span>
+                      </a>
+                  </li>
+                </ul>
+            </li>
+
+            <li class='has-sub'>
+              <a href="#">
+                  <span class="menu-title text-truncate">
                     Services
                   </span>
               </a>
                 <ul class="menu-content">
                   <li>
-                      <a class="d-flex align-items-center" href="{{ route('admin.services.sewas.index') }}">
+                      <a class="d-flex align-items-center" href="{{ route('services.sewas.index') }}">
                         <i class="bx bx-right-arrow-alt"></i>
                         <span class="menu-item text-truncate" data-i18n="eCommerce">
                           Sewa

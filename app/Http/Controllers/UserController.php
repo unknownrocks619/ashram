@@ -24,7 +24,9 @@ class UserController extends Controller
     protected $redirectTo = '/';
 
 
-
+    /**
+     * list all users data.
+     */
     public function get_user_list(Request $request)
     {
         $getResponse = userDetail::select('id','first_name','middle_name','last_name','phone_number','pet_name');
@@ -61,10 +63,19 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        if ( Auth::guard('admin')->check())
+        {
+            $users = userDetail::chunk(300, function ($result) {
+                return $result;
+            });
+            $users = userDetail::paginate();
+            return view('admin.users.list',["users"=>$users]);
+        }
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -152,7 +163,7 @@ class UserController extends Controller
          ){
 
              $request->session()->regenerate();
-            return redirect()->intended(route('admin.admin_dashboard'));
+            return redirect()->intended(route('admin_dashboard'));
         }
         return back()->withErrors(['email'=>"Credentials do not match our records."]);
 
@@ -174,6 +185,13 @@ class UserController extends Controller
             $prefix = "user";
         }
         return $this->template('users/login',['route'=>$request->route()->getPrefix(),'route'=>$prefix],$prefix);
+    }
+
+
+    public function ad_user_detail(userDetail $id,Request $request)
+    {
+
+        return view('admin.users.detail',['user_detail'=>$id]);
     }
 
     /**
@@ -248,7 +266,7 @@ class UserController extends Controller
             // act according to user entry type.
             if (Auth::guard('admin')->check() )
             {
-                return redirect()->route('admin.users.new_user_registration',['step'=>"two",'user_id'=>encrypt($user_inserted_id)]);
+                return redirect()->route('users.new_user_registration',['step'=>"two",'user_id'=>encrypt($user_inserted_id)]);
             }
         }
 
@@ -309,7 +327,7 @@ class UserController extends Controller
         // act according to user entry type.
         if (Auth::guard('admin')->check() )
         {
-            return redirect()->route('admin.users.new_user_registration',['step'=>"three",'user_id'=>encrypt($userDetail->id)]);
+            return redirect()->route('users.new_user_registration',['step'=>"three",'user_id'=>encrypt($userDetail->id)]);
         }
     }
 

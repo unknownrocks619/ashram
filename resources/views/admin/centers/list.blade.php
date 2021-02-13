@@ -17,7 +17,7 @@
         <div class="card-body card-dashboard">
           <p class="card-text text-right">
             <!-- <a href='' class='btn btn-info'>Export To Excel</a> -->
-            <a href='{{ route("admin.centers.new_center_form") }}' class='btn btn-info'>Add New Center</a>
+            <a href='{{ route("centers.new_center_form") }}' class='btn btn-info'>Add New Center</a>
 
            
           </p>

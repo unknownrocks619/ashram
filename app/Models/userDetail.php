@@ -49,4 +49,9 @@ class userDetail extends Model
         return $full_name;
     }
 
+    public function address()
+    {
+        return $this->country . ", " . $this->city;
+    }
+
 }

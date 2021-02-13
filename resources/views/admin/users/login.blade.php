@@ -26,7 +26,7 @@
                                 </div>
                                 <div class="card-body" id='login_box'>
                                     <x-alert></x-alert>
-                                    <form action="{{ route('admin.users.user_login_post') }}" method="POST">
+                                    <form action="{{ route('users.user_login_post') }}" method="POST">
                                         @if(isset($route) && $route=='admin')
                                             <input type='hidden' name='route' value='{{ $route }}' />
                                         @endif

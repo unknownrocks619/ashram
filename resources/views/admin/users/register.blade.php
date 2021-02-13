@@ -42,7 +42,7 @@
             <div class="tab-content">
                 <div class="tab-pane active fade show" id="account" aria-labelledby="account-tab" role="tabpanel">
                     <!-- users edit account form start -->
-                    <form method="POST" action="{{ route('admin.users.submit_registration') }}" class="form-validate">
+                    <form method="POST" action="{{ route('users.submit_registration') }}" class="form-validate">
                         @csrf
                         <input type='hidden' name='source' value='admin' />
                         <div class="row bg-warning">

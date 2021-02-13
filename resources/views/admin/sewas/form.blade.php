@@ -1,4 +1,4 @@
-<form method="POST" action="{{ isset($sewa) ? route('admin.services.sewas.update-sewa-service') : route('admin.services.sewas.submit-new-form') }}">
+<form method="POST" action="{{ isset($sewa) ? route('services.sewas.update-sewa-service') : route('services.sewas.submit-new-form') }}">
     @csrf
     @if(isset($sewa))
         <input type="hidden" name='__app_id' value="{{ encrypt($sewa->id) }}" style='display:none' />

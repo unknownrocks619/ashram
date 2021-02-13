@@ -7,7 +7,7 @@
         <div class='card-header px-2 py-2 bg-dark text-white'>
             <h4 class='card-title text-white'>Add New Center</h4>
         </div>
-        <form method="POST" action="{{ route ('admin.centers.submit_center_record') }}">
+        <form method="POST" action="{{ route ('centers.submit_center_record') }}">
         @csrf
             <div class='card-body mt-2'>
                 <div class='row'>

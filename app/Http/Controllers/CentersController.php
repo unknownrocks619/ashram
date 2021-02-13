@@ -113,7 +113,7 @@ class CentersController extends Controller
 
             if ($centerRecord->id)
             {
-                return redirect()->route('admin.centers.center_list')->with('success','New Center was created successfully.');
+                return redirect()->route('centers.center_list')->with('success','New Center was created successfully.');
             }
         }
     }

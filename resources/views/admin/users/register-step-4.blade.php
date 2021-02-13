@@ -39,7 +39,7 @@
                     </a>
                 </li>
             </ul>
-            <form method="POST" action=" {{ route('admin.users.user-reference',['user_id'=>encrypt($user_detail->id)]) }} ">
+            <form method="POST" action=" {{ route('users.user-reference',['user_id'=>encrypt($user_detail->id)]) }} ">
                 @csrf
                 <div class="tab-content">
                     <div class="tab-pane active fade show" id="account" aria-labelledby="account-tab" role="tabpanel">
@@ -111,7 +111,7 @@
             placeholder: 'Type name or Phone Number',
             tags : true,
             ajax : {
-                url : '{{ url(route("admin.get_user_list")) }}',
+                url : '{{ url(route("get_user_list")) }}',
                 dataType : 'json',
                 processResults : function (data)
                 {
