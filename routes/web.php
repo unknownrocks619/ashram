@@ -5,7 +5,7 @@ use App\Http\Controllers\userController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CentersController;
 use App\Http\Controllers\RoomController;
-
+use App\Http\Controllers\RoomDetailController;
 use App\Http\Controllers\SewasController;
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +33,8 @@ Route::prefix('users')->name('users.')->group(function () {
 Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::get('login',[UserController::class,'ad_login'])->name('admin_login_index');
+
+    Route::get('path in url',[RoomDetailController::class,'method to access when in this url'])->name('name of the route to call from view file');
 
     /**
      * Users
