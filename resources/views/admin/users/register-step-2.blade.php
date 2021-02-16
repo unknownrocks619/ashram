@@ -42,7 +42,7 @@
             <div class="tab-content">
                 <div class="tab-pane active fade show" id="account" aria-labelledby="account-tab" role="tabpanel">
                     <!-- users edit account form start -->
-                    <form enctype="multipart/form-data" method="post" class="form-validate" action="{{ route('admin.users.submit_user_verification',['user_id'=>encrypt($user_detail->id)]) }}">
+                    <form enctype="multipart/form-data" method="post" class="form-validate" action="{{ route('users.submit_user_verification',['user_id'=>encrypt($user_detail->id)]) }}">
                         @csrf
                         <div class="row bg-warning">
                             <div class="col-6 col-sm-6">

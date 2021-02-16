@@ -5,8 +5,12 @@ use App\Http\Controllers\userController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CentersController;
 use App\Http\Controllers\RoomController;
+<<<<<<< HEAD
 use App\Http\Controllers\RoomDetailController;
+=======
+>>>>>>> 2ecfb6a5988454b180d0df9ea286cddee35b0d78
 use App\Http\Controllers\SewasController;
+use App\Http\Controllers\BookingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,6 +31,7 @@ Route::prefix('users')->name('users.')->group(function () {
 
 });
 
+<<<<<<< HEAD
 /**
  * Admins
  */
@@ -87,3 +92,5 @@ Route::prefix('admin')->name('admin.')->group(function () {
      });
 });
 
+=======
+>>>>>>> 2ecfb6a5988454b180d0df9ea286cddee35b0d78
