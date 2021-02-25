@@ -5,6 +5,7 @@ use App\Http\Controllers\userController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CentersController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\RoomDetailController;
 use App\Http\Controllers\SewasController;
 use App\Http\Controllers\BookingController;
 /*
