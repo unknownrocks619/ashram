@@ -182,6 +182,44 @@
             <li class='has-sub'>
               <a href="#">
                   <span class="menu-title text-truncate">
+                    Rooms
+                  </span>
+              </a>
+                <ul class="menu-content">
+                  <li>
+                      <a class="d-flex align-items-center" href="{{ route('rooms.room-list') }}">
+                        <i class="bx bx-right-arrow-alt"></i>
+                        <span class="menu-item text-truncate" data-i18n="rooms">
+                            List
+                        </span>
+                      </a>
+                  </li>
+                  <li>
+                      <a class="d-flex align-items-center" href="{{ route('centers.new_center_form') }}">
+                        <i class="bx bx-right-arrow-alt"></i>
+                        <span class="menu-item text-truncate" data-i18n="eCommerce">
+                          Add Room
+                        </span>
+                      </a>
+                  </li>
+                  <li>
+                      <a class="d-flex align-items-center" href="#">
+                        <i class="bx bx-right-arrow-alt"></i>
+                        <span class="menu-item text-truncate" data-i18n="eCommerce">
+                          Report
+                        </span>
+                      </a>
+                  </li>
+                </ul>
+            </li>
+
+
+
+
+
+            <li class='has-sub'>
+              <a href="#">
+                  <span class="menu-title text-truncate">
                     Services
                   </span>
               </a>

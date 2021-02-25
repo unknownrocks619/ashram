@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\UserSewa;
+use App\Models\Booking;
+use App\Models\userDetail;
+use App\Models\UserSewaBridge;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -198,5 +202,43 @@ class SewasController extends Controller
 
         }
         abort(404);
+    }
+
+    public function assign_visitor_to_sewaw(Request $request) {
+        
+        $post_record = $request->all();
+        if ($request->booking_id) {
+            $booking_detail = Booking::findOrFail($request->booking_id);
+            $post_record["bookings_id"] = $booking_detail->id;
+        }
+
+        if ($request->user_id ){
+            $user_detail = Booking::findOrFail($request->user_id);
+            $post_record['user_id'] = $user_detail->id;
+        }
+
+        // first lets search if for this booking, user is already involved or not.
+
+
+
+        $post_record['user_involvement'] = "sewa_involved";
+        
+        foreach ($request->sewas as $sewa) {
+            $search_sewa = UserSewaBridge::where('user_involvement','sewa_involved')
+                            ->where('bookings_id',$booking_detail->id)
+                            ->where('user_sewas_id',$sewa)
+                            ->first();
+            if ( ! $search_sewa){
+                $post_record["user_sewas_id"] = $sewa;
+                $post_record['created_by_user'] = Auth::guard("admin")->check()  ? Auth::guard("admin")->user()->id : 1;
+                UserSewaBridge::create($post_record);
+    
+            }
+        }
+        
+        return response([
+            "success" => true,
+            'message' => "User is now providing sewa to ashram."
+        ]);
     }
 }

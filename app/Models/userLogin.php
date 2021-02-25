@@ -46,4 +46,10 @@ class userLogin extends Authenticatable
      */
     protected $casts = [
     ];
+
+    public function userdetail()
+    {
+        return $this->belongsTo(userDetail::class);
+    }
 }
+
