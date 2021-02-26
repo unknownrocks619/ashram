@@ -19,4 +19,14 @@ class UserVerification extends Model
         'verified',
         'created_by_user'
     ];
+
+    public function userdetail(){
+        return $this->belongsTo(userDetail::class);
+    }
+
+    public function center() {
+        return $this->belongsTo(Center::class);
+    }
 }
+
+

@@ -17,6 +17,12 @@ use App\Models\UserVerification;
 use App\Models\userMedia;
 use App\Models\userReference;
 use App\Models\UserSewaBridge;
+use App\Models\DonationTransaction;
+use App\Models\Donation;
+use App\Models\Night;
+use App\Models\Booking;
+
+use Nepali;
 
 class UserController extends Controller
 {
@@ -188,10 +194,34 @@ class UserController extends Controller
     }
 
 
-    public function ad_user_detail(userDetail $id,Request $request)
+    public function ad_user_detail(Request $request,userDetail $id, $type = null)
     {
+        $data = [
+            'user_detail' => $id
+        ];
+        $page = ($type) ? $type : "detail";
+        if ($type && $type== "sewas" ){
+            // fetch all involved sewas along with booking dates.
+            $involved_sewas = UserSewaBridge::where('user_id',$id->id)
+                                            ->where('user_involvement','sewa_involved')
+                                            ->get();
+            $data["involved_sewas"] = $involved_sewas;
+        } else if($type && $type == "donations") {
+            // fetch all donation transaction;
+            $don_transactions = DonationTransaction::where('user_detail_id',$id->id)->get();
+            $donation = Donation::where('user_detail_id',$id->id)->first();
+            $data["don_transactions"] = $don_transactions;
+            $data['donation'] = $donation;
 
-        return view('admin.users.detail',['user_detail'=>$id]);
+        } else if($type && $type == "nights") {
+            // fetch all booking detail.
+            $bookings = Booking::where('user_detail_id',$id->id)->get();
+            $data["bookings"] = $bookings;
+
+        } else {
+            $page = "detail";
+        }
+        return view('admin.users.'.$page,$data);
     }
 
     /**
@@ -237,6 +267,25 @@ class UserController extends Controller
         
         $db_post_request = $request->post();
 
+        // dd($request->all());
+        if ($request->dob_eng) {
+            // let's convert date to english
+            $db_post_request["date_of_birth_nepali"] = $request->date_of_birth_nepali;
+            $nepali_class= new Nepali;
+            $explode = explode('-',$request->date_of_birth_nepali);
+            $eng_date = $nepali_class->get_eng_date($explode[0],$explode[1],$explode['2']);
+            $db_post_request["date_of_birth_eng"] = $eng_date['y'] . '-'.$eng_date['m'].'-'.$eng_date['d'];
+        } else {
+            $db_post_request["date_of_birth_eng"] = $request->date_of_birth_nepali;
+            $nepali_class = new Nepali;
+            $nep_date = $nepali_class->get_nepali_date(
+                                date("Y",strtotime($request->date_of_birth_nepali)),
+                                date("m",strtotime($request->date_of_birth_nepali)),
+                                date("d",strtotime($request->date_of_birth_nepali))
+            );
+            $db_post_request["date_of_birth_nepali"] = $nep_date["y"].'-'.$nep_date['m'].'-'.$nep_date['d'];
+        }
+
         if (Auth::guard('admin')->check() )
         {
             $db_post_request['created_by_user'] = Auth::guard('admin')->user()->id;
@@ -254,13 +303,15 @@ class UserController extends Controller
             // dd($createRecord->id);
             if($db_post_request['email'])
             {
-                $userLogin = new userLogin;
-                $user_login_instance['email'] = $db_post_request["email"];
-                $user_login_instance['password'] = Hash::make(Str::random(8));;
-                $user_login_instance['account_status'] = "Hold";
-                $user_login_instance['created_by_user'] = Auth::guard('admin')->user()->id;
-                $user_login_instance['user_detail_id'] = $user_inserted_id;
-                $userLogin->create($user_login_instance);
+                $this->store_random_login($user_inserted_id,$db_post_request['email'],'Hold');
+                // $userLogin = new userLogin;
+                // $user_login_instance['email'] = $db_post_request["email"];
+                // $user_login_instance['password'] = Hash::make(Str::random(8));;
+                // $user_login_instance['account_status'] = "Hold";
+                // $user_login_instance['created_by_user'] = Auth::guard('admin')->user()->id;
+                // $user_login_instance['user_detail_id'] = $user_inserted_id;
+                // $user_login_instance['user_type'] = 'visitor';
+                // $userLogin->create($user_login_instance);
             }
 
             // act according to user entry type.
@@ -395,8 +446,7 @@ class UserController extends Controller
         // also let's check if this user already entereed.
 
         $reference_detail = userReference::where('user_detail_id',$user_detail->id)->get()->first();
-
-        if ( ! $refered_user_detail ):
+        if ( ! $reference_detail ):
             
             if ((int) $request->refered_by_person) {
                 // let's search this user and get its detail.
@@ -436,7 +486,136 @@ class UserController extends Controller
 
         // now redirect user to either to provide login detail or book a room.
         $request->session()->flash('success','New User Record has been created.');
+        if ($request->make_booking) {
+            return redirect()->route('bookings.ad-new-booking',['user_id'=>encrypt($user_detail->id)]);
+        } 
         return redirect()->route('user-list');
 
     }
+
+    /**
+     * Store new email to bd if none was provided during registration 
+     * @param Request $request 
+     * @return json
+     * @
+     */
+    public function store_new_email(Request $request) 
+    {
+        $user_detail = userDetail::findOrFail($request->user_id);
+        $response = [];
+
+        // let's check if record exists.
+        if ($user_detail->userlogin && $user_detail->userlogin->email) {
+            $response =['success'=>false,'message'=>'This account already have an email account associated with it.'];
+        } elseif ( ! $user_detail->userlogin || ! $user_detail->userlogin->email) {
+
+            // let's add new email address to user, also let's add other required fields.
+            $saved_email = $this->store_random_login($user_detail->id,$request->email,'Hold');
+            
+            if ( ! $saved_email ){
+                $response = ['success'=>false,'message'=>"Email Already Exists."];
+            } else{
+                $response = ['success'=>true,'message'=>'Congratulation, You just added email address.']; 
+            }
+        } else{
+            $response = ['success'=>false,'message'=>'Oops, Something went wrong please try again.'];
+        }
+        // if($request->ajax()){
+            return response($response);
+        // }
+    }
+
+    
+    /**
+     * During registration or while inserting new email address only
+     * we create other random values to required field
+     * @param int $user_detail_id primary key from table user_detail
+     * @param String $account_status Account status Hold | Active | Unverified
+     * @return userLogin Instance
+     * @access admin
+     * @version 1.0
+     */
+    protected function store_random_login($user_detail_id,$email,$account_status="Hold")
+    {
+        $userLogin = new userLogin;
+
+        // let's check if email already exists.
+        $check_email = $userLogin::where('email',$email)->first();
+        if ($check_email){
+            return null;
+        }
+
+        $user_login_instance['email'] = $email;
+        $user_login_instance['password'] = Hash::make(Str::random(8));;
+        $user_login_instance['account_status'] = $account_status;
+        $user_login_instance['created_by_user'] = Auth::guard('admin')->user()->id;
+        $user_login_instance['user_detail_id'] = $user_detail_id;
+        $user_login_instance['user_type'] = 'visitor';
+        return $userLogin->create($user_login_instance);
+    }
+
+    /**
+     * Update Alias or Pet name for the user.
+     * @param Request $request
+     * @return json
+     * @access "admin"
+     */
+    public function update_pet_name(Request $request)
+    {
+        $user_detail = userDetail::findOrFail($request->user_id);
+        $response = [];
+        
+        $user_detail->pet_name = $request->pet_name;
+
+        if($user_detail->save())
+        {
+            $response = ['success'=>true,'message'=>"Pet Name Updated."];
+        } else{
+            $response = ['success'=>false,'message'=>'Oops, Something went wrong, Please try again.'];
+        }
+
+        // if ($request->ajax()){
+            return response($response);
+        // }
+    }
+
+    /**
+     * Update users Marital Staus
+     * @param Request $request
+     * @access 'admin'
+     */
+    public function update_marital_status(Request $request)
+    {
+        $user_detail = userDetail::findOrFail($request->user_id);
+        $response = [];
+        if ($request->married_to)
+        {
+            $user_detail->married_to_id = $request->married_to;
+        } else{
+            // let's find out the user
+            $existing_user = userDetail::findOrFail($request->married_to_existing);
+            $user_detail->married_to_id = $existing_user->id;
+            $existing_user->married_to_id = $user_detail->id;
+            $existing_user->marritial_status = "Married";
+            $existing_user->save();
+        }
+        $user_detail->marritial_status = "Married";
+
+        if($user_detail->save()) {
+            $response = [
+                'success' => true,
+                'message' => "Congratulation, You just Added Marrital Status of User."
+            ]; 
+        } else {
+            $response = [
+                'success'=> false,
+                'message' => "Oops, Unable to update user marital status. Please Try again."
+            ];
+        }
+
+        // if($request->ajax()){
+            return response($response);
+        // }
+    }
+
 }   

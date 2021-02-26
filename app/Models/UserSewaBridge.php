@@ -13,11 +13,16 @@ class UserSewaBridge extends Model
         'user_id',
         'user_sewas_id',
         'user_involvement',
-        'created_by_user'
+        'created_by_user',
+        'bookings_id'
     ];
 
     public function usersewa()
     {
-        return $this->belongsTo(UserSewa::class);
+        return $this->belongsTo(UserSewa::class,'user_sewas_id');
+    }
+
+    public function booking(){
+        return $this->belongsTo(Booking::class,'bookings_id');
     }
 }

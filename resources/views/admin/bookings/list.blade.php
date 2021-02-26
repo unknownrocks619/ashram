@@ -25,24 +25,23 @@
         <div class="card-body card-dashboard">
           <p class="card-text text-right">
             <!-- <a href='' class='btn btn-info'>Export To Excel</a> -->
-            <a href='{{ route("centers.new_center_form") }}' class='btn btn-info'>
+            <a href='{{ route("bookings.ad-new-booking") }}' class='btn btn-info'>
                 <i class='fas fa-plus'></i>
                 Create New Booking
             </a>
           </p>
             @if($bookings && $bookings != null)
-                <div class="table-responsive">
+                <div >
                     <table class="table table-striped table-bordered complex-headers" id="booking_table">
                     <thead>
                         <tr>
                         <th rowspan="2" class="align-center">Room</th>
-                        <th colspan="3" class="text-center bg-dark text-white">Guest Information</th>
+                        <th colspan="2" class="text-center bg-dark text-white">Guest Information</th>
                         <th colspan="2" class='text-center  bg-dark text-white'>Usage Information</th>
                         <th rowspan="2" class='bg-success'>Action</th>
                         </tr>
                         <tr class=''>
                         <th>Name</th>
-                        <th>Address</th>
                         <th>Phone</th>
                         <th>Check In Date</th>
                         <th>Room Status</th>
@@ -50,6 +49,61 @@
                     </thead>
                     <tbody>
                             @foreach ($bookings as $booking)
+                              @php 
+                                $user_detail = $booking->userdetail;
+                              @endphp
+                              <tr>
+                              <td>
+                                  @php 
+                                    $room_connector = $booking->room;
+                                    echo "<strong>Room Number : </strong>".$room_connector->room_number;
+                                    echo "<br />";
+                                    echo "<strong>Block / Name :</strong> " . $room_connector->room_name; 
+                                  @endphp
+                                </td>
+                                <td>
+                                  {{ $user_detail->full_name() }}
+                                  <br />
+                                  @if($booking->is_occupied)
+                                  <small class='text-muted'>
+                                    (
+                                    <a data-toggle="modal"
+                                    data-target="#booking_modal"
+                                    href="{{ route('modals.display',['reference'=>'Booking','reference_id'=>$booking->id,'modal'=>'assign_sewa_to_user','user_detail_id'=>$booking->user_detail_id]) }}">
+                                      Assign User to Sewa
+                                    </a>
+                                    )
+                                  </small>
+                                  @endif
+                                </td>
+                               
+                                <td>
+                                  {{ $user_detail->phone_number }}
+                                </td>
+                                <td>
+                                  Date : {{ date("Y, M d",strtotime($booking->check_in_date)) }}
+                                </td>
+                                <td>
+                                  {{ ucwords($booking->status) }}
+                                </td>
+                                <td>
+                                  @if($booking->is_occupied)
+                                  <a data-toggle="modal"
+                                    data-target="#booking_modal"
+                                    href="{{ route('modals.display',['reference'=>'Booking','reference_id'=>$booking->id,'modal'=>'check_out_logged_visitor']) }}">
+                                    Clear Room 
+                                    </a>
+                                  @endif
+
+                                  @if($booking->is_reserved)
+                                    <a data-toggle="modal"
+                                    data-target="#booking_modal"
+                                    href="{{ route('modals.display',['reference'=>'Booking','reference_id'=>$booking->id,'modal'=>'cancel_reservation_policy']) }}">
+                                      Cancel Reservation
+                                    </a>
+                                  @endif
+                                </td>
+                              </tr>
                             @endforeach  
                         </tbody>
                     <tfoot>
@@ -73,6 +127,27 @@
     </div>
   </div>
   
+
+  <!-- start modal -->
+    <div class="modal fade text-left" id="booking_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+            aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="myModalLabel1">Booking Update</h3>
+            <button type="button" class="close rounded-pill" data-dismiss="modal" aria-label="Close">
+              <i class="bx bx-x"></i>
+            </button>
+          </div>
+          <div class='modal-body'>
+            <div id="modal-content-fetch">Loading Form, Please wait...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+        <!-- / end modal -->
+
 </section>
 <!--/ Complex headers table -->
 @endSection()
@@ -92,6 +167,16 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 $("#booking_table").DataTable();
+
+                $('#booking_modal').on('shown.bs.modal', function (event) {
+                  $.ajax({
+                      method : "GET",
+                      url : event.relatedTarget.href,
+                      success: function (response){
+                          $("#modal-content-fetch").html(response);
+                      }
+                  });
+                })
             });
         </script>
     @endif

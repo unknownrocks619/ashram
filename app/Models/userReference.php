@@ -17,4 +17,12 @@ class userReference extends Model
         'created_by_user',
         'user_referer_id'
     ];
+
+    public function userdetail(){
+        return $this->belongsTo(userDetail::class);
+    }
+
+    public function branches(){
+        return $this->belongsTo(Center::class,'center_id');
+    }
 }

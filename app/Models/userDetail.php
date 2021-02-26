@@ -36,6 +36,10 @@ class userDetail extends Model
         'profile_id'
     ];
 
+    public function userlogin(){
+        
+        return $this->hasOne(userLogin::class);
+    }
     
     public function full_name() {
 
@@ -54,4 +58,47 @@ class userDetail extends Model
         return $this->country . ", " . $this->city;
     }
 
+    public function parent()
+    {
+        return $this->belongsTo(static::class,'married_to_id');
+    }
+
+    public function children(){
+        return $this->hasOne(static::class,'married_to_id');
+    }
+
+    public function userreference()
+    {
+        return $this->hasOne(userReference::class,"user_detail_id");
+    }
+
+    public function userverification()
+    {
+        return $this->hasOne(UserVerification::class,'user_detail_id');
+    }
+
+    public function donation(){
+        return $this->hasOne(Donation::class,'user_detail_id');
+    }
+
+    public function night(){
+        return $this->hasOne(Night::class,'user_detail_id');
+    }
+
+    public function user_medias(){
+        return $this->hasMany(userMedia::class,'user_detail_id');
+    }
+
+    public function user_profile(){
+        return $this->hasOne(userMedia::class,'user_detail_id')
+                    ->where('active',true);
+    }
+
+    public function user_sewa(){
+        return $this->hasMany(UserSewaBridge::class,'user_id')->where('user_involvement','sewa_interested');
+    }
+
+    public function user_assigned_sewa(){
+        return $this->hasMany(UserSewaBridge::class,'user_id')->where('user_involvement','sewa_involved');
+    }
 }

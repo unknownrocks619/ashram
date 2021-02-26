@@ -90,6 +90,15 @@
                         </div>
 
                         <div class='row'>
+                            <div class='col-12 text-right'>
+                                <label class='control-label'>
+                                    <input checked type="checkbox" name='make_booking' value='1' />
+                                    Start Visitor Booking Registration After Completion.
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class='row'>
                             <div class="col-md-6">
                                 <input type='submit' class='btn btn-primary' value="Save & Continue" />
                             </div>

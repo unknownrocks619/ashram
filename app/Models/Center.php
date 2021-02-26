@@ -32,4 +32,11 @@ class Center extends Model
         'created_by_user'
     ];
 
+    public function userverification(){
+        return $this->hasOne(UserVerification::class,"center_id");
+    }
+
+    public function userreference(){
+        return $this->hasMany(userReference::class,"center_id");
+    }
 }
