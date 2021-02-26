@@ -194,7 +194,7 @@
                       </a>
                   </li>
                   <li>
-                      <a class="d-flex align-items-center" href="{{ route('centers.new_center_form') }}">
+                      <a class="d-flex align-items-center" href="{{ route('rooms.add-room') }}">
                         <i class="bx bx-right-arrow-alt"></i>
                         <span class="menu-item text-truncate" data-i18n="eCommerce">
                           Add Room
@@ -232,16 +232,18 @@
                         </span>
                       </a>
                   </li>
-                  <li>
-                      <a class="d-flex align-items-center" href="#">
-                        <i class="bx bx-right-arrow-alt"></i>
-                        <span class="menu-item text-truncate" data-i18n="eCommerce">
-                          
-                        </span>
-                      </a>
-                  </li>
+                 
                 </ul>
-            </li>       
+            </li>
+            <li>
+              <a href="#" class='bg-danger text-white'>
+                  <form method="post" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class='btn btn-link text-white'>Logout</button>
+                    <!-- Logout -->
+                    </form>
+              </a>
+            </li>   
         </ul>
     </div>
 </div>
