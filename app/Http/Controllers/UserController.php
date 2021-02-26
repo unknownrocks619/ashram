@@ -74,10 +74,10 @@ class UserController extends Controller
         //
         if ( Auth::guard('admin')->check())
         {
-            $users = userDetail::chunk(300, function ($result) {
-                return $result;
-            });
-            $users = userDetail::paginate();
+            //$users = userDetail::chunk(300, function ($result) {
+             //   return $result;
+            //});
+            $users = userDetail::all();
             return view('admin.users.list',["users"=>$users]);
         }
     }

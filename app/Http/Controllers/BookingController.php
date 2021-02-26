@@ -139,6 +139,7 @@ class BookingController extends Controller
     {
         //
         if ($request->check_out_visitor &&  ! $booking->check_out_date) {
+            
             $booking->check_out_date = $request->check_out_date . " " . $request->check_out_time;
             $booking->is_occupied = null;
             $booking->status = "Out";
@@ -156,7 +157,6 @@ class BookingController extends Controller
             try {
                 \DB::transaction( function () use ($request,$booking,$user_detail) {
                     $booking->save();
-    
                     $bookingClearanceController = new BookingClearanceController;
                     $bookingClearanceController->store($request,$booking);
     
@@ -170,6 +170,7 @@ class BookingController extends Controller
                     $nightController->store($request,$booking);
                 });
             } catch (\Throwable $th) {
+                dd($th);
                 if ($request->ajax()){
                     $response =[
                         'success' => false,

@@ -5,10 +5,7 @@ use App\Http\Controllers\userController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CentersController;
 use App\Http\Controllers\RoomController;
-<<<<<<< HEAD
-=======
 use App\Http\Controllers\RoomDetailController;
->>>>>>> 24c669455b6c4bffe3898ef7b003cf09c45fedcd
 use App\Http\Controllers\SewasController;
 use App\Http\Controllers\BookingController;
 /*
@@ -30,4 +27,3 @@ Route::prefix('users')->name('users.')->group(function () {
     Route::get('login',[UserController::class,'ad_login'])->name('user_login');
 
 });
-

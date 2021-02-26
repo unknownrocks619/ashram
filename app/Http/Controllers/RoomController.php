@@ -2,19 +2,14 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use App\Models\Room;
 use Illuminate\Http\Request;
-=======
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use Carbon\Carbon;
 
 
-use App\Models\Room;
->>>>>>> 24c669455b6c4bffe3898ef7b003cf09c45fedcd
 
 class RoomController extends Controller
 {
@@ -25,15 +20,12 @@ class RoomController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
         //
-=======
         if (Auth::guard('admin')->check()){
             $page = 'admin';
         }
         $rooms = Room::all();
         return view($page . ".rooms.index",compact('rooms'));
->>>>>>> 24c669455b6c4bffe3898ef7b003cf09c45fedcd
     }
 
     /**
@@ -44,14 +36,11 @@ class RoomController extends Controller
     public function create()
     {
         //
-<<<<<<< HEAD
-=======
         if(Auth::guard('admin')->check()){
             $page = "admin";
         }
 
         return view($page.'.rooms.add');
->>>>>>> 24c669455b6c4bffe3898ef7b003cf09c45fedcd
     }
 
     /**
@@ -63,8 +52,6 @@ class RoomController extends Controller
     public function store(Request $request)
     {
         //
-<<<<<<< HEAD
-=======
         $user_post = $request->all();
         $user_post['created_by_user'] = "";
         if (Auth::guard('admin')->check()) {
@@ -75,23 +62,15 @@ class RoomController extends Controller
             return back();
         }
 
->>>>>>> 24c669455b6c4bffe3898ef7b003cf09c45fedcd
     }
 
     /**
      * Display the specified resource.
      *
-<<<<<<< HEAD
-     * @param  \App\Models\Room  $room
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Room $room)
-=======
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
->>>>>>> 24c669455b6c4bffe3898ef7b003cf09c45fedcd
     {
         //
     }
@@ -99,14 +78,6 @@ class RoomController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-<<<<<<< HEAD
-     * @param  \App\Models\Room  $room
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Room $room)
-    {
-        //
-=======
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -118,21 +89,12 @@ class RoomController extends Controller
         }
 
         return view($page.'.rooms.edit',["room"=>$id]);
->>>>>>> 24c669455b6c4bffe3898ef7b003cf09c45fedcd
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-<<<<<<< HEAD
-     * @param  \App\Models\Room  $room
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Room $room)
-    {
-        //
-=======
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -144,21 +106,11 @@ class RoomController extends Controller
             return back();
         }
 
->>>>>>> 24c669455b6c4bffe3898ef7b003cf09c45fedcd
     }
 
     /**
      * Remove the specified resource from storage.
      *
-<<<<<<< HEAD
-     * @param  \App\Models\Room  $room
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Room $room)
-    {
-        //
-    }
-=======
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -226,5 +178,4 @@ class RoomController extends Controller
         return response($response);
     }
 
->>>>>>> 24c669455b6c4bffe3898ef7b003cf09c45fedcd
 }

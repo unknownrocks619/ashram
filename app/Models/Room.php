@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Room extends Model
 {
     use HasFactory;
-<<<<<<< HEAD
-=======
 
     protected $fillable = [
         'room_number',
@@ -37,5 +35,4 @@ class Room extends Model
         return $this->hasMany(Booking::class,'rooms_id')
                     ->where('is_reserved',true);
     }
->>>>>>> 24c669455b6c4bffe3898ef7b003cf09c45fedcd
 }

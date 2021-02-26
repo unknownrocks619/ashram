@@ -208,11 +208,6 @@
               <i class="bx bx-right-arrow-alt"></i>
               <span class="menu-item text-truncate" data-i18n="eCommerce">
 
-<<<<<<< HEAD
-              </span>
-            </a>
-          </li>
-=======
             <li class='has-sub'>
               <a href="#">
                   <span class="menu-title text-truncate">
@@ -277,7 +272,6 @@
                   </li>
                 </ul>
             </li>       
->>>>>>> 24c669455b6c4bffe3898ef7b003cf09c45fedcd
         </ul>
       </li>
 
