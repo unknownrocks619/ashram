@@ -26,187 +26,155 @@
                       <rect id="Rectangle" fill="url(#linearGradient-2)" x="0" y="0" width="7.68181818" height="7.68181818"></rect>
                     </g>
                   </g>
-                </g>
-              </g>
-            </svg>
-          </div>
-          <h2 class="brand-text mb-0">Frest</h2>
-        </a></li>
-      <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="bx bx-x d-block d-xl-none font-medium-4 primary"></i><i class="toggle-icon bx bx-disc font-medium-4 d-none d-xl-block primary" data-ticon="bx-disc"></i></a></li>
-    </ul>
-  </div>
-
-  <!-- Navigation -->
-  <div class="shadow-bottom"></div>
-  <div class="main-menu-content">
-    <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
-      <li class=" nav-item">
-        <a href="{{ route('admin_dashboard') }}">
-          <span class="menu-title text-truncate" data-i18n="Dashboard">Dashboard</span>
-        </a>
-      </li>
-      <li class="nav-item has-sub sidebar-group-active open">
-        <a href="index.html">
-          <span class="menu-title text-truncate" data-i18n="Dashboard">Ashram</span>
-        </a>
-        <ul class="menu-content">
-          <li>
-            <a class="d-flex align-items-center" href="dashboard-ecommerce.html">
-              <i class="bx bx-right-arrow-alt"></i>
-              <span class="menu-item text-truncate" data-i18n="eCommerce">
-                Visitors
-              </span>
-            </a>
-          </li>
-          <li>
-            <a class="d-flex align-items-center" href="dashboard-ecommerce.html">
-              <i class="bx bx-right-arrow-alt"></i>
-              <span class="menu-item text-truncate" data-i18n="eCommerce">
-                New Visitors
-              </span>
-            </a>
-          </li>
-          <li>
-            <a class="d-flex align-items-center" href="dashboard-analytics.html">
-              <i class="bx bx-right-arrow-alt"></i>
-              <span class="menu-item text-truncate" data-i18n="Analytics">
-                Ashram Settings
-              </span>
-            </a>
-          </li>
-          <li class="active">
-            <a class="d-flex align-items-center" href="dashboard-analytics.html">
-              <i class="bx bx-right-arrow-alt"></i>
-              <span class="menu-item text-truncate" data-i18n="Analytics">
-                Report
-              </span>
-            </a>
-          </li>
+                </svg>
+              </div>
+              <h2 class="brand-text mb-0">AMS</h2></a></li>
+          <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="bx bx-x d-block d-xl-none font-medium-4 primary"></i><i class="toggle-icon bx bx-disc font-medium-4 d-none d-xl-block primary" data-ticon="bx-disc"></i></a></li>
         </ul>
-      </li>
+    </div>
 
-      <li class='has-sub'>
-        <a href="#">
-          <span class="menu-title text-truncate">
-            Users
-          </span>
-        </a>
-        <ul class="menu-content">
-          <li>
-            <a class="d-flex align-items-center" href="{{ route('users.new_user_registration') }}">
-              <i class="bx bx-right-arrow-alt"></i>
-              <span class="menu-item text-truncate" data-i18n="eCommerce">
-                New Users
+    <!-- Navigation -->
+    <div class="shadow-bottom"></div>
+    <div class="main-menu-content">
+        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
+            <li class=" nav-item">
+                <a href="{{ route('admin_dashboard') }}">
+                  <span class="menu-title text-truncate" data-i18n="Dashboard">Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item has-sub sidebar-group-active open">
+                <a href="index.html">
+                  <span class="menu-title text-truncate" data-i18n="Dashboard">Ashram</span>
+                </a>
+                <ul class="menu-content">
+                  <li>
+                      <a class="d-flex align-items-center" href="{{ route('bookings.booking-list') }}">
+                        <i class="bx bx-right-arrow-alt"></i>
+                        <span class="menu-item text-truncate" data-i18n="eCommerce">
+                          Visitors
+                        </span>
+                      </a>
+                  </li>
+                  <li>
+                      <a class="d-flex align-items-center" href="{{ route('bookings.ad-new-booking') }}">
+                        <i class="bx bx-right-arrow-alt"></i>
+                        <span class="menu-item text-truncate" data-i18n="eCommerce">
+                          New Visitors
+                        </span>
+                      </a>
+                  </li>
+                  <li>
+                    <a class="d-flex align-items-center" href="#">
+                      <i class="bx bx-right-arrow-alt"></i>
+                      <span class="menu-item text-truncate" data-i18n="Analytics">
+                        Ashram Settings
+                      </span>
+                    </a>
+                  </li>
+                  <li class="active">
+                    <a class="d-flex align-items-center" href="#">
+                      <i class="bx bx-right-arrow-alt"></i>
+                      <span class="menu-item text-truncate" data-i18n="Analytics">
+                        Report
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+            </li>
 
-              </span>
-            </a>
-          </li>
-          <li>
-            <a class="d-flex align-items-center" href="{{ route('users.user-list') }}">
-              <i class="bx bx-right-arrow-alt"></i>
-              <span class="menu-item text-truncate" data-i18n="eCommerce">
-                All Users
-              </span>
-            </a>
-          </li>
-        </ul>
-      </li>
-      <li class='has-sub'>
-        <a href="#">
-          <span class="menu-title text-truncate">
-            Centers
-          </span>
-        </a>
-        <ul class="menu-content">
-          <li>
-            <a class="d-flex align-items-center" href="{{ route('centers.center_list') }}">
-              <i class="bx bx-right-arrow-alt"></i>
-              <span class="menu-item text-truncate" data-i18n="eCommerce">
-                All Centers
-              </span>
-            </a>
-          </li>
-          <li>
-            <a class="d-flex align-items-center" href="{{ route('centers.new_center_form') }}">
-              <i class="bx bx-right-arrow-alt"></i>
-              <span class="menu-item text-truncate" data-i18n="eCommerce">
-                Add Center
-              </span>
-            </a>
-          </li>
-          <li>
-            <a class="d-flex align-items-center" href="#">
-              <i class="bx bx-right-arrow-alt"></i>
-              <span class="menu-item text-truncate" data-i18n="eCommerce">
-                Report
-              </span>
-            </a>
-          </li>
-        </ul>
-      </li>
-
-
-      <li class='has-sub'>
-        <a href="#">
-          <span class="menu-title text-truncate">
-            Bookings
-          </span>
-        </a>
-        <ul class="menu-content">
-          <li>
-            <a class="d-flex align-items-center" href="{{ route('bookings.booking-list') }}">
-              <i class="bx bx-right-arrow-alt"></i>
-              <span class="menu-item text-truncate" data-i18n="bookings">
-                All Bookings
-              </span>
-            </a>
-          </li>
-          <li>
-            <a class="d-flex align-items-center" href="{{ route('centers.new_center_form') }}">
-              <i class="bx bx-right-arrow-alt"></i>
-              <span class="menu-item text-truncate" data-i18n="eCommerce">
-                Add Center
-              </span>
-            </a>
-          </li>
-          <li>
-            <a class="d-flex align-items-center" href="#">
-              <i class="bx bx-right-arrow-alt"></i>
-              <span class="menu-item text-truncate" data-i18n="eCommerce">
-                Report
-              </span>
-            </a>
-          </li>
-        </ul>
-      </li>
-
-      <li class='has-sub'>
-        <a href="#">
-          <span class="menu-title text-truncate">
-            Rooms
-          </span>
-        </a>
-        <ul class="menu-content">
-          <li>
-            <a class="d-flex align-items-center" href="#">
-              <i class="bx bx-right-arrow-alt"></i>
-              <span class="menu-item text-truncate" data-i18n="bookings">
-                Manage Rooms
-              </span>
-            </a>
-          </li>
-          <li>
-            <a class="d-flex align-items-center" href="#">
-              <i class="bx bx-right-arrow-alt"></i>
-              <span class="menu-item text-truncate" data-i18n="eCommerce">
-                Available Rooms
-              </span>
-            </a>
-          </li>
-          <li>
-            <a class="d-flex align-items-center" href="#">
-              <i class="bx bx-right-arrow-alt"></i>
-              <span class="menu-item text-truncate" data-i18n="eCommerce">
+            <li class='has-sub'>
+              <a href="#">
+                  <span class="menu-title text-truncate">
+                    Users
+                  </span>
+              </a>
+                <ul class="menu-content">
+                  <li>
+                      <a class="d-flex align-items-center" href="{{ route('users.new_user_registration') }}">
+                        <i class="bx bx-right-arrow-alt"></i>
+                        <span class="menu-item text-truncate" data-i18n="eCommerce">
+                          New Users
+                        </span>
+                      </a>
+                  </li>
+                  <li>
+                      <a class="d-flex align-items-center" href="{{ route('users.user-list') }}">
+                        <i class="bx bx-right-arrow-alt"></i>
+                        <span class="menu-item text-truncate" data-i18n="eCommerce">
+                          All Users
+                        </span>
+                      </a>
+                  </li>
+                </ul>
+            </li> 
+            <li class='has-sub'>
+              <a href="#">
+                  <span class="menu-title text-truncate">
+                    Centers
+                  </span>
+              </a>
+                <ul class="menu-content">
+                  <li>
+                      <a class="d-flex align-items-center" href="{{ route('centers.center_list') }}">
+                        <i class="bx bx-right-arrow-alt"></i>
+                        <span class="menu-item text-truncate" data-i18n="eCommerce">
+                            All Centers
+                        </span>
+                      </a>
+                  </li>
+                  <li>
+                      <a class="d-flex align-items-center" href="{{ route('centers.new_center_form') }}">
+                        <i class="bx bx-right-arrow-alt"></i>
+                        <span class="menu-item text-truncate" data-i18n="eCommerce">
+                          Add Center
+                        </span>
+                      </a>
+                  </li>
+                  <li>
+                      <a class="d-flex align-items-center" href="#">
+                        <i class="bx bx-right-arrow-alt"></i>
+                        <span class="menu-item text-truncate" data-i18n="eCommerce">
+                          Report
+                        </span>
+                      </a>
+                  </li>
+                </ul>
+            </li>
+            
+            
+            <li class='has-sub'>
+              <a href="#">
+                  <span class="menu-title text-truncate">
+                    Bookings
+                  </span>
+              </a>
+                <ul class="menu-content">
+                  <li>
+                      <a class="d-flex align-items-center" href="{{ route('bookings.booking-list') }}">
+                        <i class="bx bx-right-arrow-alt"></i>
+                        <span class="menu-item text-truncate" data-i18n="bookings">
+                            All Bookings
+                        </span>
+                      </a>
+                  </li>
+                  <li>
+                      <a class="d-flex align-items-center" href="{{ route('bookings.ad-new-booking') }}">
+                        <i class="bx bx-right-arrow-alt"></i>
+                        <span class="menu-item text-truncate" data-i18n="eCommerce">
+                          Add Center
+                        </span>
+                      </a>
+                  </li>
+                  <li>
+                      <a class="d-flex align-items-center" href="#">
+                        <i class="bx bx-right-arrow-alt"></i>
+                        <span class="menu-item text-truncate" data-i18n="eCommerce">
+                          Report
+                        </span>
+                      </a>
+                  </li>
+                </ul>
+            </li>
 
             <li class='has-sub'>
               <a href="#">
