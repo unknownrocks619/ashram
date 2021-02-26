@@ -30,7 +30,7 @@
                   </g>
                 </svg>
               </div>
-              <h2 class="brand-text mb-0">Frest</h2></a></li>
+              <h2 class="brand-text mb-0">AMS</h2></a></li>
           <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="bx bx-x d-block d-xl-none font-medium-4 primary"></i><i class="toggle-icon bx bx-disc font-medium-4 d-none d-xl-block primary" data-ticon="bx-disc"></i></a></li>
         </ul>
     </div>
@@ -50,7 +50,7 @@
                 </a>
                 <ul class="menu-content">
                   <li>
-                      <a class="d-flex align-items-center" href="dashboard-ecommerce.html">
+                      <a class="d-flex align-items-center" href="{{ route('bookings.booking-list') }}">
                         <i class="bx bx-right-arrow-alt"></i>
                         <span class="menu-item text-truncate" data-i18n="eCommerce">
                           Visitors
@@ -58,7 +58,7 @@
                       </a>
                   </li>
                   <li>
-                      <a class="d-flex align-items-center" href="dashboard-ecommerce.html">
+                      <a class="d-flex align-items-center" href="{{ route('bookings.ad-new-booking') }}">
                         <i class="bx bx-right-arrow-alt"></i>
                         <span class="menu-item text-truncate" data-i18n="eCommerce">
                           New Visitors
@@ -66,7 +66,7 @@
                       </a>
                   </li>
                   <li>
-                    <a class="d-flex align-items-center" href="dashboard-analytics.html">
+                    <a class="d-flex align-items-center" href="#">
                       <i class="bx bx-right-arrow-alt"></i>
                       <span class="menu-item text-truncate" data-i18n="Analytics">
                         Ashram Settings
@@ -74,7 +74,7 @@
                     </a>
                   </li>
                   <li class="active">
-                    <a class="d-flex align-items-center" href="dashboard-analytics.html">
+                    <a class="d-flex align-items-center" href="#">
                       <i class="bx bx-right-arrow-alt"></i>
                       <span class="menu-item text-truncate" data-i18n="Analytics">
                         Report
@@ -96,7 +96,6 @@
                         <i class="bx bx-right-arrow-alt"></i>
                         <span class="menu-item text-truncate" data-i18n="eCommerce">
                           New Users
-                          
                         </span>
                       </a>
                   </li>
@@ -161,7 +160,7 @@
                       </a>
                   </li>
                   <li>
-                      <a class="d-flex align-items-center" href="{{ route('centers.new_center_form') }}">
+                      <a class="d-flex align-items-center" href="{{ route('bookings.ad-new-booking') }}">
                         <i class="bx bx-right-arrow-alt"></i>
                         <span class="menu-item text-truncate" data-i18n="eCommerce">
                           Add Center
