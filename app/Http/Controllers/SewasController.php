@@ -213,7 +213,7 @@ class SewasController extends Controller
         }
 
         if ($request->user_id ){
-            $user_detail = Booking::findOrFail($request->user_id);
+            $user_detail = userDetail::findOrFail($request->user_id);
             $post_record['user_id'] = $user_detail->id;
         }
 
