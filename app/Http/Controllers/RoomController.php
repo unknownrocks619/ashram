@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RoomDetail;
+use App\Models\Room;
 use Illuminate\Http\Request;
 
-class RoomDetailController extends Controller
+class RoomController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class RoomDetailController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\RoomDetail  $roomDetail
+     * @param  \App\Models\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function show(RoomDetail $roomDetail)
+    public function show(Room $room)
     {
         //
     }
@@ -52,10 +52,10 @@ class RoomDetailController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\RoomDetail  $roomDetail
+     * @param  \App\Models\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function edit(RoomDetail $roomDetail)
+    public function edit(Room $room)
     {
         //
     }
@@ -64,10 +64,10 @@ class RoomDetailController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\RoomDetail  $roomDetail
+     * @param  \App\Models\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RoomDetail $roomDetail)
+    public function update(Request $request, Room $room)
     {
         //
     }
@@ -75,10 +75,10 @@ class RoomDetailController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\RoomDetail  $roomDetail
+     * @param  \App\Models\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RoomDetail $roomDetail)
+    public function destroy(Room $room)
     {
         //
     }

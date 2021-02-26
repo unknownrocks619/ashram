@@ -69,5 +69,15 @@ Route::prefix('services')->name('services.')->group(function () {
     Route::post('submit-new-form',[SewasController::class,'store'])->name('submit-new-form');
     Route::post('update-sewa-service',[SewasController::class,'update_sewa_service'])->name('update-sewa-service');
     });
+
+    /**
+ * Rooms
+ */
+Route::prefix('room')->name('room.')->group(function () {
+
+    Route::get('center_list',[CentersController::class,'index'])->name('center_list');
+    Route::get('new_center',[CentersController::class,'new_center_form'])->name('new_center_form');
+    Route::post('submit_center_record',[CentersController::class,'create_center'])->name('submit_center_record');
+    });
 });
 
