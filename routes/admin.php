@@ -9,9 +9,20 @@ use App\Http\Controllers\SewasController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ModalController;
 use App\Http\Controllers\UserReferencesController;
+use Illuminate\Support\Facades\Auth;
+
 /**
  * Admins
  */
+
+ Route::post('logout',function(){
+     if (Auth::guard("admin")->check()){
+         Auth::guard("admin")->logout();
+         return redirect()->route('admin_login_index');
+     } else{
+         abort (404);
+     }
+ })->name("logout");
 Route::get('login',[UserController::class,'ad_login'])->name('admin_login_index');
 Route::get('get_user_list',[UserController::class,'get_user_list'])->name('get_user_list'); // get list of users for select 2 data.
 
