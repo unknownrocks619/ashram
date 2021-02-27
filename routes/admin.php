@@ -98,7 +98,7 @@ Route::prefix('services')->name('services.')->group(function () {
     Route::post('delete',[SewasController::class,'destroy'])->name('delete');
     Route::post('submit-new-form',[SewasController::class,'store'])->name('submit-new-form');
     Route::post('update-sewa-service',[SewasController::class,'update_sewa_service'])->name('update-sewa-service');
-    Route::post('assign-sewa-to-visitor',[SewasController::class,'assign_visitor_to_sewaw'])->name('assign-visitor-to-sewa');
+    Route::post('assign-sewa-to-visitor',[SewasController::class,'assign_visitor_to_sewa'])->name('assign-visitor-to-sewa');
     });
 
     /**

@@ -62,7 +62,9 @@
                                   @endphp
                                 </td>
                                 <td>
+                                  <a href="{{route('users.view-user-detail',$user_detail->id)}}">
                                   {{ $user_detail->full_name() }}
+                                  </a>
                                   <br />
                                   @if($booking->is_occupied)
                                   <small class='text-muted'>

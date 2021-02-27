@@ -75,7 +75,7 @@
                         </div>
                         <!-- right section image -->
                         <div class="col-md-6 d-md-block d-none text-center align-self-center p-3">
-                            <img class="img-fluid" src="{{ asset ('admin/app-assets/images/pages/login.png') }}" alt="branding logo">
+                            <img class="img-fluid" src="{{ asset ('admin/app-assets/images/pages/gurudev_login.jpeg') }}" alt="branding logo">
                         </div>
                     </div>
                 </div>
