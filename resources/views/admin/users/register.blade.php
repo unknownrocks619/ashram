@@ -113,7 +113,7 @@
                             <div class="col-2 col-sm-2">
                                 <div class="form-group">
                                     <label class='control-label'>
-                                        Is Date of Birth In English ?
+                                        Is Date of Birth In Nepali ?
                                     </label>
                                     <input class="checkbox-input" type="checkbox" @if( old('dob_eng') ) checked @endif name='dob_eng' value='1' id='date_of_birth_option' />
                                     
