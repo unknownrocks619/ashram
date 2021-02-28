@@ -81,7 +81,7 @@
                                   {{ $user_detail->phone_number }}
                                 </td>
                                 <td>
-                                  Date : {{ date("Y, M d",strtotime($booking->check_in_date)) }}
+                                  Date : {{ date("M, d Y",strtotime($booking->check_in_date)) }}
                                 </td>
                                 <td>
                                   {{ ucwords($booking->status) }}

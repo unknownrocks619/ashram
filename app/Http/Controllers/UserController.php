@@ -77,8 +77,8 @@ class UserController extends Controller
             $users = userDetail::chunk(300, function ($result) {
                 return $result;
             });
-            $users = userDetail::paginate();
-            return view('admin.users.list',["users"=>$users]);
+            $users = userDetail::get();
+            return view('admin.users.list',compact('users'));
         }
     }
 
@@ -489,7 +489,7 @@ class UserController extends Controller
         if ($request->make_booking) {
             return redirect()->route('bookings.ad-new-booking',['user_id'=>encrypt($user_detail->id)]);
         } 
-        return redirect()->route('user-list');
+        return redirect()->route('users.user-list');
 
     }
 

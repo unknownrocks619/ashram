@@ -133,7 +133,11 @@
                                         Select Room Contributor
                                         <span class='required text-danger'>*</span>
                                     </label>
+                                    @if($room->room_owner_id)
                                     <input type='text' readonly value="{{ $room->userdetail->full_name() }}" class='form-control' />
+                                    @else
+                                    <select name="room_owner_id" class='form-control select_room_owner'></select>
+                                    @endif
                                 </div>
                             </div>
 

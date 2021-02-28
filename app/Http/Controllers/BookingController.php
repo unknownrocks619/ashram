@@ -36,7 +36,8 @@ class BookingController extends Controller
                     'is_reserved',
                     'status',
                     'id'
-                    )->where('status','Booked')->paginate();
+                    )->where('status','Booked')
+                    ->orWhere('status','Reserved')->get();
             return view('admin.bookings.list',compact('bookings'));
         }
         abort(404);
@@ -87,6 +88,7 @@ class BookingController extends Controller
         $user_input['created_by_user'] = Auth::guard("admin")->check() ? Auth::guard('admin')->user()->id : 0;
         $user_input['rooms_id'] = $request->room_number;
 
+        // dd(date$user_input['check_in_date']);
         // lets check if date is from future..
         $user_date = Carbon::createFromFormat("Y-m-d",$request->check_in_date);
         $today = Carbon::createFromFormat("Y-m-d",date("Y-m-d"));

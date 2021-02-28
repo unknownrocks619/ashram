@@ -119,7 +119,7 @@
                                     </div>
                                     <div class="col-md-12 mt-2">
                                         <label class='label-control'>Select Visit Time</label>
-                                        <input type="text" name="check_in_time" value="{{ old('check_in_time',date('H:i A')) }}" class="form-control" required />
+                                        <input type="text" name="check_in_time" value="{{ old('check_in_time',date('h:i A')) }}" class="form-control" required />
                                     </div>
                                     <div class="col-md-12 mt-2">
                                         <label class='label-control'>Remark</label>
