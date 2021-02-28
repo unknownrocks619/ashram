@@ -64,7 +64,7 @@
                                         Room Number
                                         <span class='required text-danger'>*</span>
                                     </label>
-                                    <select class='form-control room_selection' name="room_number">
+                                    <select required class='form-control room_selection' name="room_number">
                                         <option value='-1'></option>
                                         @php
                                             $rooms = new \App\Models\Room;

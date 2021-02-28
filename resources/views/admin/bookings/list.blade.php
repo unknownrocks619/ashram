@@ -169,7 +169,6 @@
         <script src="{{ asset ('admin/app-assets/vendors/js/tables/datatable/buttons.bootstrap4.min.js') }}"></script>
         <script src="{{ asset ('admin/app-assets/vendors/js/tables/datatable/pdfmake.min.js') }}"></script>
         <script src="{{ asset ('admin/app-assets/vendors/js/tables/datatable/vfs_fonts.js') }}"></script>
-        <script src='{{ asset("admin/app-assets/js/select2.min.js") }}'></script>
 
         <!-- END: Page Vendor JS-->
         <script type="text/javascript">

@@ -107,13 +107,13 @@
                                         Date of Birth
                                         <span class='text-danger required'>*</span>
                                     </label>
-                                    <input type="text" name='date_of_birth_nepali' value="{{ old('date_of_birth_nep') }}" class='form-control' placeholder='YYYY-MM-DD' />
+                                    <input required type="text" name='date_of_birth_nepali' value="{{ old('date_of_birth_nep') }}" class='form-control' placeholder='YYYY-MM-DD' />
                                 </div>
                             </div>
                             <div class="col-2 col-sm-2">
                                 <div class="form-group">
                                     <label class='control-label'>
-                                        Is Date of Birth In English ?
+                                        Is Date of Birth In Nepali ?
                                     </label>
                                     <input class="checkbox-input" type="checkbox" @if( old('dob_eng') ) checked @endif name='dob_eng' value='1' id='date_of_birth_option' />
                                     
@@ -128,7 +128,7 @@
                                         Phone Number
                                         <span class='required text-danger'>*</span>
                                     </label>
-                                    <input type='text' name='phone_number' class='form-control' value="{{ old('phone_number') }}" />                                    
+                                    <input required type='text' name='phone_number' class='form-control' value="{{ old('phone_number') }}" />                                    
                                 </div>
                             </div>
                             <div class="col-6 col-sm-6">
