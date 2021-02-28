@@ -18,7 +18,7 @@
                     Interested In Sewa : <br />
                     @php
                         $signed_sewas = $user_detail->user_sewa;
-                        if ($signed_sewas){
+                        if ($user_detail->user_sewa){
                             foreach ($signed_sewas as $signed_sewa) {
                                 echo "<span class='text-white badge badge-primary'>";
                                     echo $signed_sewa->usersewa->sewa_name;
@@ -70,7 +70,6 @@
         </div>
     </div>
 </form>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script type="text/javascript">
     $("form").submit(function(event) {
         event.preventDefault();

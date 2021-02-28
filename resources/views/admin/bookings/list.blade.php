@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset ('admin/app-assets/vendors/css/tables/datatable/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset ('admin/app-assets/vendors/css/tables/datatable/buttons.bootstrap4.min.css') }}">
     <!-- END: Vendor CSS-->
+    <link ref='stylesheet' href='{{ asset("admin/app-assets/css/select2.min.css") }}' />
 
 @endSection()
 
@@ -51,6 +52,8 @@
                             @foreach ($bookings as $booking)
                               @php 
                                 $user_detail = $booking->userdetail;
+                                $user_date = Carbon\Carbon::createFromFormat("Y-m-d h:i A",$booking->check_in_date);
+                                $today = Carbon\Carbon::createFromFormat("Y-m-d",date("Y-m-d"));
                               @endphp
                               <tr>
                               <td>
@@ -89,6 +92,7 @@
                                   {{ ucwords($booking->status) }}
                                 </td>
                                 <td>
+
                                   @if($booking->is_occupied)
                                   <a data-toggle="modal"
                                     data-target="#booking_modal"
@@ -96,12 +100,12 @@
                                     Clear Room 
                                     </a>
                                   @endif
-
+                                  
                                   @if($booking->is_reserved)
                                     <a data-toggle="modal"
                                     data-target="#booking_modal"
                                     href="{{ route('modals.display',['reference'=>'Booking','reference_id'=>$booking->id,'modal'=>'cancel_reservation_policy']) }}">
-                                      Cancel Reservation
+                                      Reserve Option
                                     </a>
                                   @endif
                                 </td>
@@ -165,6 +169,8 @@
         <script src="{{ asset ('admin/app-assets/vendors/js/tables/datatable/buttons.bootstrap4.min.js') }}"></script>
         <script src="{{ asset ('admin/app-assets/vendors/js/tables/datatable/pdfmake.min.js') }}"></script>
         <script src="{{ asset ('admin/app-assets/vendors/js/tables/datatable/vfs_fonts.js') }}"></script>
+        <script src='{{ asset("admin/app-assets/js/select2.min.js") }}'></script>
+
         <!-- END: Page Vendor JS-->
         <script type="text/javascript">
             $(document).ready(function() {

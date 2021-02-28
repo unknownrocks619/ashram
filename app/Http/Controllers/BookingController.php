@@ -208,17 +208,26 @@ class BookingController extends Controller
 
 
         if ($request->cancel_reservation){
-            $booking->check_out_date = date("Y-m-d H:i A");
-            $booking->status = "Reservation Cancelled";
-            $booking->is_reserved = null;   
-            $booking->remarks = ( ! $booking->remarks && $request->remarks) ? $request->remarks : $booking->remarks; 
+            // dd($request->all());
+            if ($request->arrival ) {
+                $booking->status = "Booked";
+                $booking->is_reserved = null;
+                $booking->remarks = "Reservation was confirmed to booking.";
+                $booking->is_occupied = true;
+            } else {
+                $booking->check_out_date = date("Y-m-d H:i A");
+                $booking->status = "Reservation Cancelled";
+                $booking->is_reserved = null;   
+                $booking->remarks = ( ! $booking->remarks && $request->remarks) ? $request->remarks : $booking->remarks;     
+            }
             try {
-                $request->remarks = "Reservation Cancelled";
+                // $request->remarks = "Reservation Cancelled";
                 \DB::transaction(function() use ($request,$booking) {
                     $booking->save();
-
-                    $bookingClearanceController = new BookingClearanceController;
-                    $bookingClearanceController->store($request,$booking);
+                    if ( ! $request->arrival){
+                        $bookingClearanceController = new BookingClearanceController;
+                        $bookingClearanceController->store($request,$booking);
+                    }
                 });
             } catch (\Throwable $th) {
                 //throw $th;

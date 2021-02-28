@@ -70,7 +70,7 @@ class ModalController extends Controller
                 //     $modalRecord = Room::findOrFail($request->reference_id);                    
                 // }
 
-
+                
                 $data["record"] = $modalRecord;
             }
         }

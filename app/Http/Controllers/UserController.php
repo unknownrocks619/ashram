@@ -74,19 +74,11 @@ class UserController extends Controller
         //
         if ( Auth::guard('admin')->check())
         {
-<<<<<<< HEAD
-            $users = userDetail::chunk(300, function ($result) {
-                return $result;
-            });
-            $users = userDetail::get();
-            return view('admin.users.list',compact('users'));
-=======
             //$users = userDetail::chunk(300, function ($result) {
              //   return $result;
             //});
             $users = userDetail::all();
             return view('admin.users.list',["users"=>$users]);
->>>>>>> 284166c3a7df2663c3ed879b4c90120c51be1ca1
         }
     }
 
