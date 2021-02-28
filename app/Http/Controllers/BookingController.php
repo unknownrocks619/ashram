@@ -36,7 +36,8 @@ class BookingController extends Controller
                     'is_reserved',
                     'status',
                     'id'
-                    )->where('status','Booked')->paginate();
+                    )->where('status','Booked')
+                    ->orWhere('status','Reserved')->get();
             return view('admin.bookings.list',compact('bookings'));
         }
         abort(404);
@@ -87,6 +88,7 @@ class BookingController extends Controller
         $user_input['created_by_user'] = Auth::guard("admin")->check() ? Auth::guard('admin')->user()->id : 0;
         $user_input['rooms_id'] = $request->room_number;
 
+        // dd(date$user_input['check_in_date']);
         // lets check if date is from future..
         $user_date = Carbon::createFromFormat("Y-m-d",$request->check_in_date);
         $today = Carbon::createFromFormat("Y-m-d",date("Y-m-d"));
@@ -206,17 +208,26 @@ class BookingController extends Controller
 
 
         if ($request->cancel_reservation){
-            $booking->check_out_date = date("Y-m-d H:i A");
-            $booking->status = "Reservation Cancelled";
-            $booking->is_reserved = null;   
-            $booking->remarks = ( ! $booking->remarks && $request->remarks) ? $request->remarks : $booking->remarks; 
+            // dd($request->all());
+            if ($request->arrival ) {
+                $booking->status = "Booked";
+                $booking->is_reserved = null;
+                $booking->remarks = "Reservation was confirmed to booking.";
+                $booking->is_occupied = true;
+            } else {
+                $booking->check_out_date = date("Y-m-d H:i A");
+                $booking->status = "Reservation Cancelled";
+                $booking->is_reserved = null;   
+                $booking->remarks = ( ! $booking->remarks && $request->remarks) ? $request->remarks : $booking->remarks;     
+            }
             try {
-                $request->remarks = "Reservation Cancelled";
+                // $request->remarks = "Reservation Cancelled";
                 \DB::transaction(function() use ($request,$booking) {
                     $booking->save();
-
-                    $bookingClearanceController = new BookingClearanceController;
-                    $bookingClearanceController->store($request,$booking);
+                    if ( ! $request->arrival){
+                        $bookingClearanceController = new BookingClearanceController;
+                        $bookingClearanceController->store($request,$booking);
+                    }
                 });
             } catch (\Throwable $th) {
                 //throw $th;

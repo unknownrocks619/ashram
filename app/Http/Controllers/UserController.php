@@ -484,12 +484,18 @@ class UserController extends Controller
             }
         }
 
+        // now let's save if any skills is present.
+        if ($request->skills) {
+            $user_detail->skills = $request->skills;
+            $user_detail->save();
+        }
+
         // now redirect user to either to provide login detail or book a room.
         $request->session()->flash('success','New User Record has been created.');
         if ($request->make_booking) {
             return redirect()->route('bookings.ad-new-booking',['user_id'=>encrypt($user_detail->id)]);
         } 
-        return redirect()->route('user-list');
+        return redirect()->route('users.user-list');
 
     }
 

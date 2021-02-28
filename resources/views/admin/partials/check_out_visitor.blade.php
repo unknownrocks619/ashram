@@ -50,7 +50,7 @@
                 </div>
                 <div class='form-group'>
                     <label class='label-control'>Check Out Time</label>
-                    <input type="text" value="{{ old('check_out_time',date('H:i A')) }}" class='form-control' name='check_out_time' />
+                    <input type="text" value="{{ old('check_out_time',date('h:i A')) }}" class='form-control' name='check_out_time' />
                 </div>
                 <div class='form-group'>
                     <label class='label-control'>Remarks</label>

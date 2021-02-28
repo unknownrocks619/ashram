@@ -64,7 +64,7 @@
                                         Room Number
                                         <span class='required text-danger'>*</span>
                                     </label>
-                                    <select class='form-control room_selection' name="room_number">
+                                    <select required class='form-control room_selection' name="room_number">
                                         <option value='-1'></option>
                                         @php
                                             $rooms = new \App\Models\Room;
@@ -119,7 +119,7 @@
                                     </div>
                                     <div class="col-md-12 mt-2">
                                         <label class='label-control'>Select Visit Time</label>
-                                        <input type="text" name="check_in_time" value="{{ old('check_in_time',date('H:i A')) }}" class="form-control" required />
+                                        <input type="text" name="check_in_time" value="{{ old('check_in_time',date('h:i A')) }}" class="form-control" required />
                                     </div>
                                     <div class="col-md-12 mt-2">
                                         <label class='label-control'>Remark</label>

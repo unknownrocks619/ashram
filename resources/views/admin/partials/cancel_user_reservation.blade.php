@@ -1,6 +1,4 @@
-<form method="POST" action="{{ route('bookings.check-out-user',$record->id) }}">
-    @csrf
-    <input type="hidden" name="cancel_reservation" value="true" />
+
 
     <div class='modal-body'>
         <div class='row'>
@@ -48,8 +46,21 @@
     </div>
     <div class='modal-footer'>
         <div class='row'>
-            <div class='col-12'>
-                <button type='submit' class='btn btn-danger'>Cancel Reservation</button>
+        <div class='col-4 pull-right mx-2'>
+        <form method="POST" action="{{ route('bookings.check-out-user',$record->id) }}">
+            @csrf
+            <input type="hidden" name="cancel_reservation" value="true" />
+            <input type="hidden" name="arrival" value="true" />
+                <input type="submit"  class='btn btn-primary' name="arived" value="Visitor Arrived" />
+        </form>
+            </div>
+        
+            <div class='col-6 pull-left'>
+            <form method="POST" action="{{ route('bookings.check-out-user',$record->id) }}">
+    @csrf
+    <input type="hidden" name="cancel_reservation" value="true" />
+                <button type='submit' name="cancel"  class='btn btn-danger'>Cancel Reservation</button>
+                </form
             </div>
         </div>
     </div>
