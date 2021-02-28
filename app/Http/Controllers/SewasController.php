@@ -204,8 +204,7 @@ class SewasController extends Controller
         abort(404);
     }
 
-    public function assign_visitor_to_sewaw(Request $request) {
-        
+    public function assign_visitor_to_sewa(Request $request) {
         $post_record = $request->all();
         if ($request->booking_id) {
             $booking_detail = Booking::findOrFail($request->booking_id);
@@ -222,7 +221,6 @@ class SewasController extends Controller
 
 
         $post_record['user_involvement'] = "sewa_involved";
-        
         foreach ($request->sewas as $sewa) {
             $search_sewa = UserSewaBridge::where('user_involvement','sewa_involved')
                             ->where('bookings_id',$booking_detail->id)

@@ -27,4 +27,3 @@ Route::prefix('users')->name('users.')->group(function () {
     Route::get('login',[UserController::class,'ad_login'])->name('user_login');
 
 });
-

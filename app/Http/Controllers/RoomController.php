@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\Room;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 use Carbon\Carbon;
 
 
-use App\Models\Room;
 
 class RoomController extends Controller
 {
@@ -20,6 +20,7 @@ class RoomController extends Controller
      */
     public function index()
     {
+        //
         if (Auth::guard('admin')->check()){
             $page = 'admin';
         }
