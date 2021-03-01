@@ -33,7 +33,8 @@ class userDetail extends Model
         'skills',
         'marritial_status',
         'married_to_id',
-        'profile_id'
+        'profile_id',
+        'user_role'
     ];
 
     public function userlogin(){

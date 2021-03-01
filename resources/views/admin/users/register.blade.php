@@ -233,9 +233,9 @@
                             <div class="col-12 col-sm-6">
                                 <div class="form-group">
                                     <label>Role</label>
-                                    <select class="form-control" name='roles'>
+                                    <select class="form-control" name='user_role'>
                                         <option value="visitors" @if(old('roles')) selected @endif>Visitors</option>
-                                        <option value='staff' @if(old('roles') == 'staff') selected @endif>Staff</option>
+                                        <option value='volunteers' @if(old('roles') == 'volunteers') selected @endif>Volunteer</option>
                                     </select>
                                 </div>
                             </div>
